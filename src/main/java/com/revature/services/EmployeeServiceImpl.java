@@ -22,7 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		//for (User check : userDao) {
 		//System.out.println(udi.getAllUser());
-		for (Employee check : udi.getAllUser()) {
+		for (Employee check : udi.getAllEmployees()) {
 			if(check.getUsername().equals(username) && check.getPassword().equals(password)) {
 				user = check;
 				break;
@@ -47,7 +47,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		System.out.println("password: " + password);
 		//User user = null;
 		
-		 udi.createUser(new Employee(username, password));
+		 udi.createEmployee(new Employee(username, password));
 		//return user;
 		return null;
 

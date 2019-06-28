@@ -17,7 +17,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	private static Connection conn = ConnectionFactory.getConnection();
 
 		@Override
-		public void createUser(Employee u) {
+		public void createEmployee(Employee u) {
 			try {
 				conn.setAutoCommit(false);
 				String query = "insert into user_trms(username,password) values (?,?)";
@@ -40,7 +40,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 		
 		@Override
-	public ArrayList<Employee> getAllUser() {
+	public ArrayList<Employee> getAllEmployees() {
 		ArrayList<Employee> userList = new ArrayList<Employee>();
 		String sql = "select username,password from user_trms";
 

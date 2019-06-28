@@ -6,7 +6,7 @@ import com.revature.pojo.Employee;
 
 public interface EmployeeDao {
 	
-	public void createUser(Employee u);
+	public void createEmployee(Employee u);
 	
 	//public void updateCustomer(User u);
 	
@@ -16,7 +16,7 @@ public interface EmployeeDao {
 	
 	//public User getCustomerByUsername(String username);
 	
-	public ArrayList<Employee> getAllUser();
+	public ArrayList<Employee> getAllEmployees();
 	
 	//public ArrayList<Car> viewCars(String userName);
 
