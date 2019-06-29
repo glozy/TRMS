@@ -18,8 +18,33 @@ public class Employee {
 	
 	private Integer reportsto;
 	
-	private Double balance;
+	private String EmployeeType;
 	
+	private Double award;
+	
+	public String getEmployeeType() {
+		return EmployeeType;
+	}
+
+	public void setEmployeeType(String employeeType) {
+		EmployeeType = employeeType;
+	}
+	
+	public Employee(Integer employeeId, String firstname, String lastname, String username, String password,
+			String email, String phone, Integer reportsto, String employeeType, Double award) {
+		super();
+		this.employeeId = employeeId;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.phone = phone;
+		this.reportsto = reportsto;
+		EmployeeType = employeeType;
+		this.award = award;
+	}
+
 	public Employee(String username, String password, String fullname) {
 		super();
 		this.username = username;
@@ -102,12 +127,12 @@ public class Employee {
 		this.reportsto = reportsto;
 	}
 
-	public Double getBalance() {
-		return balance;
+	public Double getAward() {
+		return award;
 	}
 
-	public void setBalance(Double balance) {
-		this.balance = balance;
+	public void setAward(Double balance) {
+		this.award = balance;
 	}
 
 	public void setEmployeeId(Integer employeeId) {
@@ -123,14 +148,15 @@ public class Employee {
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", firstname=" + firstname + ", lastname=" + lastname
 				+ ", username=" + username + ", password=" + password + ", email=" + email + ", phone=" + phone
-				+ ", reportsto=" + reportsto + ", balance=" + balance + "]";
+				+ ", reportsto=" + reportsto + ", EmployeeType=" + EmployeeType + ", award=" + award + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((balance == null) ? 0 : balance.hashCode());
+		result = prime * result + ((EmployeeType == null) ? 0 : EmployeeType.hashCode());
+		result = prime * result + ((award == null) ? 0 : award.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((employeeId == null) ? 0 : employeeId.hashCode());
 		result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
@@ -151,10 +177,15 @@ public class Employee {
 		if (getClass() != obj.getClass())
 			return false;
 		Employee other = (Employee) obj;
-		if (balance == null) {
-			if (other.balance != null)
+		if (EmployeeType == null) {
+			if (other.EmployeeType != null)
 				return false;
-		} else if (!balance.equals(other.balance))
+		} else if (!EmployeeType.equals(other.EmployeeType))
+			return false;
+		if (award == null) {
+			if (other.award != null)
+				return false;
+		} else if (!award.equals(other.award))
 			return false;
 		if (email == null) {
 			if (other.email != null)

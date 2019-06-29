@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.revature.pojo.Employee;
 import com.revature.services.EmployeeService;
@@ -13,19 +14,25 @@ import com.revature.services.EmployeeServiceImpl;
 
 public class HomeServlet extends HttpServlet{
 
-	private EmployeeService us = new EmployeeServiceImpl();
+	private EmployeeService es = new EmployeeServiceImpl();
 
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		String username = req.getParameter("username");
-		String password = req.getParameter("password");
+		HttpSession sess = req.getSession(false);
+		if (sess == null || sess.getAttribute("employee") == null) {
+			req.getRequestDispatcher("login").forward(req, resp);
+			return;
+		}
+		Employee employee = (Employee) sess.getAttribute("employee");
+		
+		String username = employee.getUsername();
+		String password = employee.getPassword();
 		System.out.println("username " + username + " password: " + password);
-		Employee user = us.loginEmployee(username, password);
 
-		if (user != null) {
+		if (employee != null) {
 			//resp.setStatus(401);
-			resp.getWriter().write("<h1>Welicome " + user.getUsername() + "</h1>");
+			resp.getWriter().write("<h1>Welcome " + employee.getUsername() + " </h1><br><a href=\"logout\"/>logout</a>");
 		} 
 	}
 

@@ -8,6 +8,8 @@ public interface EmployeeDao {
 	
 	public void createEmployee(Employee u);
 	
+	public Employee getUserByName(String username);
+	
 	//public void updateCustomer(User u);
 	
 	//public void deleteCustomer(User u);

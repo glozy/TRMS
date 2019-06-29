@@ -6,7 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.revature.dao.EmployeeDao;
 import com.revature.dao.EmployeeDaoImpl;
 import com.revature.pojo.Employee;
 import com.revature.services.EmployeeService;
@@ -14,14 +16,22 @@ import com.revature.services.EmployeeServiceImpl;
 
 public class LoginServlet extends HttpServlet{
 
-	private EmployeeService userService = new EmployeeServiceImpl();
+	private static final long serialVersionUID = 1L;
+	private EmployeeService employeeService = new EmployeeServiceImpl();
 
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		//if someone sends a get request
-		resp.sendRedirect("login.html");
-		
+		//if they already have a session, grab it else return home
+		HttpSession sess = req.getSession(false);
+		if (sess != null && sess.getAttribute("user") != null) {
+			//user is logged in already
+			resp.sendRedirect("home");
+		} else {
+			//if someone sends a get request
+			resp.sendRedirect("login.html");
+		}	
+
 	}	
 
 	@Override
@@ -29,15 +39,21 @@ public class LoginServlet extends HttpServlet{
 		//getting form data. Gets the value of the input
 		String username = req.getParameter("username"); 
 		String password = req.getParameter("password");
-		Employee user = userService.loginEmployee(username, password);
+		Employee employee = employeeService.loginEmployee(username, password);
 
-		if (user == null) {
+		EmployeeDao ed = new EmployeeDaoImpl();
+		Employee e = ed.getUserByName(username);
+		
+		if (employee == null) {
 			resp.setStatus(401);
 			resp.getWriter().write("Failed login");
 		} else {
-			resp.getWriter().write("Successful Login");
-			//req.getRequestDispatcher("home").forward(req, resp);
-			resp.sendRedirect("register.html");
+			//using session
+			HttpSession sess = req.getSession(true);
+			sess.setAttribute("employee", employee);
+			sess.setAttribute("employeeid", e.getEmployeeId());
+			resp.sendRedirect("home");
+			//resp.sendRedirect("register.html");
 		}
 	}
 

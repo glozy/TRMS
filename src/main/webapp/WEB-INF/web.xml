@@ -35,10 +35,11 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>reimbursementFormServlet</servlet-name>
-    <servlet-class>com.revature.servlets.ReimbursementFormServlet</servlet-class>
+    <servlet-class>com.revature.servlets.ReimburseFormServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>reimbursementFormServlet</servlet-name>
-    <url-pattern>/reimbursementForm</url-pattern>
+    <!-- <url-pattern>/reimbursement-form</url-pattern> -->
+    <url-pattern>/rform</url-pattern>
   </servlet-mapping>
 </web-app>
