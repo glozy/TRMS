@@ -79,8 +79,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				ret.setEmployeeId(rs.getInt(1));
 				ret.setUsername((rs.getString(2)));
 				ret.setPassword(rs.getString(3));
-				//ret.setReportsto(rs.getInt(4));
-				//ret.setEmployeeType(rs.getString(5));
+				ret.setReportsto(rs.getInt(4));
+				ret.setEmployeeType(rs.getString(5));
+				
 			}
 			
 			conn.commit();

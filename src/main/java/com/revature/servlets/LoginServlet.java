@@ -41,8 +41,9 @@ public class LoginServlet extends HttpServlet{
 		String password = req.getParameter("password");
 		Employee employee = employeeService.loginEmployee(username, password);
 
-		EmployeeDao ed = new EmployeeDaoImpl();
-		Employee e = ed.getUserByName(username);
+		//EmployeeDao ed = new EmployeeDaoImpl();
+		//Employee e = ed.getUserByName(username);
+		Employee e = employeeService.getAllUsers(username);
 		
 		if (employee == null) {
 			resp.setStatus(401);
@@ -54,6 +55,9 @@ public class LoginServlet extends HttpServlet{
 			sess.setAttribute("employeeid", e.getEmployeeId());
 			resp.sendRedirect("home");
 			//resp.sendRedirect("register.html");
+			if (e.getEmployeeType().equals("Sales Supervisor")) {
+				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"logout\">logout</a>");			
+			}
 		}
 	}
 

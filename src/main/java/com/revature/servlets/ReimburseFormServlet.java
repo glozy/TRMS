@@ -44,6 +44,10 @@ public class ReimburseFormServlet extends HttpServlet {
 		String justification = req.getParameter("justification");
 		
 		HttpSession sess = req.getSession(false);
+		if (sess == null || sess.getAttribute("employee") ==null) {
+			req.getRequestDispatcher("login").forward(req, resp);
+			return;
+		}
 		ReimburseForm reimburseForm = new ReimburseForm((Integer)sess.getAttribute("employeeid"), startdate, enddate, events, address, description, cost, gradeFormat, grade, justification);
 		rsi.createReimburseForm(reimburseForm);
 		
