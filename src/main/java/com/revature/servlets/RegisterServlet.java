@@ -14,6 +14,7 @@ import com.revature.services.EmployeeServiceImpl;
 
 public class RegisterServlet extends HttpServlet{
 	
+	private static final long serialVersionUID = 1L;
 	private EmployeeService userService = new EmployeeServiceImpl();
 	
 	@Override

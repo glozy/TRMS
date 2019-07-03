@@ -137,7 +137,6 @@ public class ReimburseDaoImpl implements ReimburseDao {
 						rs.getString("address_location"), rs.getString("description"), rs.getDouble("course_cost"), rs.getString("status"),
 						rs.getString("grading_format"), rs.getString("events"), rs.getString("work_justify"));
 
-
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

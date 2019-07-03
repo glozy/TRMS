@@ -22,10 +22,17 @@ public class LoginServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		//if they already have a session, grab it else return home
 		HttpSession sess = req.getSession(false);
-		if (sess != null && sess.getAttribute("user") != null) {
+		
+		
+		if (sess != null && sess.getAttribute("employee") != null) {
+			String type = (String) sess.getAttribute("employeetype");
+			if (type.contains("associate")) {
+				resp.sendRedirect("rform.html");
+			} else {
 			//user is logged in already
 			//resp.sendRedirect("home");
-			resp.sendRedirect("approve");
+			resp.sendRedirect("formfind.html");
+			}
 		} else {
 			//if someone sends a get request
 			resp.sendRedirect("login.html");
@@ -62,7 +69,7 @@ public class LoginServlet extends HttpServlet{
 			} else if (e.getEmployeeType().contains("supervisor")) {
 				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"logout\">logout</a>");			
 			} else {
-				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"logout\">logout</a>");			
+				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"rform.html\">view forms</a><br><a href=\"logout\">logout</a>");			
 			}
 		}
 	}
