@@ -14,7 +14,7 @@ import com.revature.util.ConnectionFactory;
 import com.revature.util.LoggingUtil;
 
 public class ReimburseDaoImpl implements ReimburseDao {
-	
+
 	private static Connection conn = ConnectionFactory.getConnection();
 
 	@Override
@@ -25,7 +25,7 @@ public class ReimburseDaoImpl implements ReimburseDao {
 					+ "description,course_cost,grading_format,events,startdate, enddate, employeeid) values"
 					+ "(?,?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = conn.prepareStatement(query);
-		
+
 			pstmt.setString(1, r.getAddress());
 			pstmt.setString(2, r.getDescription());
 			pstmt.setDouble(3, r.getCourse_cost());
@@ -45,11 +45,11 @@ public class ReimburseDaoImpl implements ReimburseDao {
 		}
 
 	}
-	
+
 	@Override
 	public List<ReimburseForm> viewFormBySupervisorId(Integer id) {
 		ArrayList<ReimburseForm> formList = new ArrayList<>();
-		
+
 		String sql = "select * from reimbursement_trms where status = 'pending'";
 		Statement stmt;
 		try {
@@ -73,6 +73,58 @@ public class ReimburseDaoImpl implements ReimburseDao {
 	}
 	
 	@Override
+	public List<ReimburseForm> viewFormByHod(Integer id) {
+		ArrayList<ReimburseForm> formList = new ArrayList<>();
+
+		String sql = "select * from reimbursement_trms where status = 'pending-supervisor'";
+		Statement stmt;
+		try {
+			conn.setAutoCommit(false);
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				formList.add(new ReimburseForm(rs.getInt("formid"),rs.getInt("employeeid"), rs.getDate("startdate"), rs.getDate("enddate"), rs.getString("form_time"),
+						rs.getString("address_location"), rs.getString("description"), rs.getDouble("course_cost"), rs.getString("status"),
+						rs.getString("grading_format"), rs.getString("events"), rs.getString("work_justify")));
+			}
+			conn.commit();
+			conn.setAutoCommit(true);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return formList;
+	}
+
+	@Override
+	public List<ReimburseForm> viewFormByBenco(Integer id) {
+		ArrayList<ReimburseForm> formList = new ArrayList<>();
+
+		String sql = "select * from reimbursement_trms where status = 'pending-hod'";
+		Statement stmt;
+		try {
+			conn.setAutoCommit(false);
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				formList.add(new ReimburseForm(rs.getInt("formid"),rs.getInt("employeeid"), rs.getDate("startdate"), rs.getDate("enddate"), rs.getString("form_time"),
+						rs.getString("address_location"), rs.getString("description"), rs.getDouble("course_cost"), rs.getString("status"),
+						rs.getString("grading_format"), rs.getString("events"), rs.getString("work_justify")));
+			}
+			conn.commit();
+			conn.setAutoCommit(true);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return formList;
+	}
+
+	@Override
 	public ReimburseForm getFormById(Integer reimburseid) {
 		ReimburseForm ret = null;
 
@@ -93,11 +145,11 @@ public class ReimburseDaoImpl implements ReimburseDao {
 		}
 		return ret;
 	}
-	
+
 	@Override
 	public void supervisorApproveForm(Integer formid) {
 		try {
-			PreparedStatement pstmt = conn.prepareStatement("update reimbursement_trms set status = 'pending-head' where formid = ?");
+			PreparedStatement pstmt = conn.prepareStatement("update reimbursement_trms set status = 'pending-supervisor' where formid = ?");
 			pstmt.setInt(1, formid);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -106,7 +158,7 @@ public class ReimburseDaoImpl implements ReimburseDao {
 		}
 
 	}
-	
+
 	@Override
 	public void supervisorDenyForm(Integer formid) {
 		try {
@@ -117,16 +169,53 @@ public class ReimburseDaoImpl implements ReimburseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
-	
-//	public static void main(String[] args) {
-//		ReimburseDao rd = new ReimburseDaoImpl();
-//		System.out.println(rd.viewFormBySupervisorId(1));
-//		System.out.println(rd.getFormById(1));
-//		rd.supervisorApproveForm(1);
-//	}
 
-	
+	@Override
+	public void hodApproveForm(Integer formid) {
+		try {
+			PreparedStatement pstmt = conn.prepareStatement("update reimbursement_trms set status = 'pending-hod' where formid = ?");
+			pstmt.setInt(1, formid);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
+	@Override
+	public void hodDenyForm(Integer formid) {
+		try {
+			PreparedStatement pstmt = conn.prepareStatement("update reimbursement_trms set status = 'denied-hod' where formid = ?");
+			pstmt.setInt(1, formid);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void bencoApproveForm(Integer formid) {
+		try {
+			PreparedStatement pstmt = conn.prepareStatement("update reimbursement_trms set status = 'pending-benco' where formid = ?");
+			pstmt.setInt(1, formid);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void bencoDenyForm(Integer formid) {
+		try {
+			PreparedStatement pstmt = conn.prepareStatement("update reimbursement_trms set status = 'denied-benco' where formid = ?");
+			pstmt.setInt(1, formid);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

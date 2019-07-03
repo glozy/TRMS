@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.pojo.ReimburseForm;
 import com.revature.services.ReimburseService;
 import com.revature.services.ReimburseServiceImpl;
+import com.revature.util.LoggingUtil;
 
 public class ApproveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,11 +30,23 @@ public class ApproveServlet extends HttpServlet {
 			return;
 		}
 		String name = request.getPathInfo();
+		String type = (String) sess.getAttribute("employeetype");
+		
 		
 		if (name == null || name.substring(1) == "") {
-
+			List<ReimburseForm> formList = null;
 			Integer userid = (Integer) sess.getAttribute("employeeid");
-			List<ReimburseForm> formList = rs.viewFormBySupervisorId(userid);
+			switch(type) {
+			case "BENCO" :
+				formList = rs.viewFormByBenco(userid);
+				break;
+			case "HOD" :
+				formList = rs.viewFormByHod(userid);
+				break;
+			case "supervisor" :
+				formList = rs.viewFormBySupervisorId(userid);
+				break;
+			}
 
 			String result = "";
 
@@ -63,22 +76,62 @@ public class ApproveServlet extends HttpServlet {
 			response.sendRedirect("login");
 			return;
 		}
+		String type = (String) sess.getAttribute("employeetype");
 		
-		String ap = "approve";
-		String dn = "deny";
+		String approve = "approve";
 		
 		String formid = request.getParameter("formid");
 		Integer fid = Integer.parseInt(formid);
 		
 		String status = request.getParameter("status");
 		
-		if (status.equals(ap)) {
-			rs.supervisorApproveForm(fid);
-			response.getWriter().write("Form approved");
+		if (status.equals(approve)) {
+			switch(type) {
+			case "BENCO" :
+				rs.bencoApproveForm(fid);
+				response.getWriter().write("Form approved");
+				LoggingUtil.info("BENCO approved form");
+				break;
+			case "HOD" :
+				rs.hodApproveForm(fid);
+				response.getWriter().write("Form approved");
+				LoggingUtil.info("HOD approved form");
+				break;
+			case "supervisor" :
+				rs.supervisorApproveForm(fid);
+				response.getWriter().write("Form approved");
+				LoggingUtil.info("supervisor approved form");
+				break;
+			}
 		} else {
-			rs.supervisorDenyForm(fid);
-			response.getWriter().write("Form denied");
+			switch(type) {
+			case "BENCO" :
+				rs.bencoDenyForm(fid);
+				response.getWriter().write("Form denied");
+				LoggingUtil.info("BENCO denied form");
+				break;
+			case "HOD" :
+				rs.hodDenyForm(fid);
+				response.getWriter().write("Form denied");
+				LoggingUtil.info("HOD denied form");
+				break;
+			case "supervisor" :
+				rs.supervisorDenyForm(fid);
+				response.getWriter().write("Form denied");
+				LoggingUtil.info("supervisor denied form");
+				break;
+			}
 		}
+		
+//		if (status.equals(ap)) {
+//			rs.supervisorApproveForm(fid);
+//			response.getWriter().write("Form approved");
+//			LoggingUtil.info("Form approved");
+//		} else {
+//			rs.supervisorDenyForm(fid);
+//			response.getWriter().write("Form denied");
+//			LoggingUtil.info("Form denied");
+//		}
 	
 		
 		

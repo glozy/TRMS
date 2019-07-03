@@ -10,6 +10,10 @@ public interface ReimburseService {
 	
 	public List<ReimburseForm> viewFormBySupervisorId(Integer id);
 	
+	public List<ReimburseForm> viewFormByBenco(Integer id);
+	
+	public List<ReimburseForm> viewFormByHod(Integer id);
+	
 	public ReimburseForm getFormById(Integer reimburseid);
 	
 	public void supervisorApproveForm(Integer formid);

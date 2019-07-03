@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.revature.dao.EmployeeDao;
-import com.revature.dao.EmployeeDaoImpl;
 import com.revature.pojo.Employee;
 import com.revature.services.EmployeeService;
 import com.revature.services.EmployeeServiceImpl;
@@ -54,9 +52,14 @@ public class LoginServlet extends HttpServlet{
 			HttpSession sess = req.getSession(true);
 			sess.setAttribute("employee", employee);
 			sess.setAttribute("employeeid", e.getEmployeeId());
+			sess.setAttribute("employeetype", e.getEmployeeType());
 			//resp.sendRedirect("home");
 			//resp.sendRedirect("register.html");
-			if (e.getEmployeeType().contains("associate")) {
+			if (e.getEmployeeType().contains("BENCO")) {
+				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"logout\">logout</a>");			
+			} else if (e.getEmployeeType().contains("HOD")) {
+				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"logout\">logout</a>");			
+			} else if (e.getEmployeeType().contains("supervisor")) {
 				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"logout\">logout</a>");			
 			} else {
 				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"logout\">logout</a>");			

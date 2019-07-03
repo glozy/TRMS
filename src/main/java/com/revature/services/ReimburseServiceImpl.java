@@ -2,8 +2,6 @@ package com.revature.services;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import com.revature.dao.ReimburseDaoImpl;
 import com.revature.pojo.ReimburseForm;
 
@@ -19,6 +17,16 @@ public class ReimburseServiceImpl implements ReimburseService {
 	@Override
 	public List<ReimburseForm> viewFormBySupervisorId(Integer id) {
 		return rdi.viewFormBySupervisorId(id);
+	}
+	
+	@Override
+	public List<ReimburseForm> viewFormByBenco(Integer id) {
+		return rdi.viewFormByBenco(id);
+	}
+
+	@Override
+	public List<ReimburseForm> viewFormByHod(Integer id) {
+		return rdi.viewFormByHod(id);
 	}
 
 	@Override
@@ -38,22 +46,24 @@ public class ReimburseServiceImpl implements ReimburseService {
 
 	@Override
 	public void hodApproveForm(Integer formid) {
-		
+		rdi.hodApproveForm(formid);
 	}
 
 	@Override
 	public void hodDenyForm(Integer formid) {
-		
+		rdi.hodDenyForm(formid);
 	}
 
 	@Override
 	public void bencoApproveForm(Integer formid) {
-		
+		rdi.bencoApproveForm(formid);
 	}
 
 	@Override
 	public void bencoDenyForm(Integer formid) {
-		
+		rdi.bencoDenyForm(formid);
 	}
+
+	
 
 }
