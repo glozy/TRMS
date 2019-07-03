@@ -76,12 +76,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			if(rs.next()) {
 				ret = new Employee();
 			
-				ret.setEmployeeId(rs.getInt(1));
-				ret.setUsername((rs.getString(2)));
-				ret.setPassword(rs.getString(3));
-				ret.setReportsto(rs.getInt(4));
-				ret.setEmployeeType(rs.getString(5));
-				
+				ret.setEmployeeId(rs.getInt("userid"));
+				ret.setUsername((rs.getString("username")));
+				ret.setPassword(rs.getString("password"));
+				ret.setFirstname(rs.getString("firstname"));
+				ret.setLastname(rs.getString("lastname"));
+				ret.setEmail(rs.getString("email"));
+				ret.setPhone(rs.getString("phone"));
+				ret.setAward(rs.getDouble("award"));
+				ret.setEmployeeType(rs.getString("employeetype"));
 			}
 			
 			conn.commit();
@@ -89,7 +92,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
 		
 		return ret;
 	}

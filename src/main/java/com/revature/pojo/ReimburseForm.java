@@ -1,8 +1,6 @@
 package com.revature.pojo;
 
 import java.sql.Date;
-import java.sql.Time;
-import java.sql.Timestamp;
 
 public class ReimburseForm {
 
@@ -14,7 +12,7 @@ public class ReimburseForm {
 	
 	private Date endDate;
 
-	private Time form_time;
+	private String form_time;
 
 	private String address;
 
@@ -31,13 +29,15 @@ public class ReimburseForm {
 	private String justification;
 
 	private String event_attachment;
+	
+	private String status;
 
 	public ReimburseForm() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReimburseForm(Integer formId, Integer employeeID, Date startDate, Date endDate, Time form_time, String address,
+	public ReimburseForm(Integer formId, Integer employeeID, Date startDate, Date endDate, String form_time, String address,
 			String description, Double course_cost, String grading_format, String passing_grade, String events,
 			String justification, String event_attachment) {
 		super();
@@ -70,6 +70,26 @@ public class ReimburseForm {
 		this.events = events;
 		this.justification = justification;
 	}
+
+	public ReimburseForm(Integer formId, Integer employeeID, Date startDate, Date endDate, String form_time, String address,
+			String description, Double course_cost, String status, String grading_format, String events,
+			String justification) {
+		super();
+		this.formId = formId;
+		this.employeeID = employeeID;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.address = address;
+		this.description = description;
+		this.course_cost = course_cost;
+		this.grading_format = grading_format;
+		this.events = events;
+		this.justification = justification;
+		this.status = status;
+		this.form_time = form_time;
+	}
+
+	
 
 	public Date getEndDate() {
 		return endDate;
@@ -107,12 +127,20 @@ public class ReimburseForm {
 		this.startDate = form_date;
 	}
 
-	public Time getForm_time() {
+	public String getForm_time() {
 		return form_time;
 	}
 
-	public void setForm_time(Time form_time) {
+	public void setForm_time(String form_time) {
 		this.form_time = form_time;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String getAddress() {
@@ -196,6 +224,7 @@ public class ReimburseForm {
 		result = prime * result + ((justification == null) ? 0 : justification.hashCode());
 		result = prime * result + ((passing_grade == null) ? 0 : passing_grade.hashCode());
 		result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
 
@@ -273,6 +302,11 @@ public class ReimburseForm {
 				return false;
 		} else if (!startDate.equals(other.startDate))
 			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
+			return false;
 		return true;
 	}
 
@@ -282,7 +316,7 @@ public class ReimburseForm {
 				+ ", endDate=" + endDate + ", form_time=" + form_time + ", address=" + address + ", description="
 				+ description + ", course_cost=" + course_cost + ", grading_format=" + grading_format
 				+ ", passing_grade=" + passing_grade + ", events=" + events + ", justification=" + justification
-				+ ", event_attachment=" + event_attachment + "]";
+				+ ", event_attachment=" + event_attachment + ", status=" + status + "]";
 	}
 	
 	

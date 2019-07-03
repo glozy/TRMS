@@ -26,7 +26,8 @@ public class LoginServlet extends HttpServlet{
 		HttpSession sess = req.getSession(false);
 		if (sess != null && sess.getAttribute("user") != null) {
 			//user is logged in already
-			resp.sendRedirect("home");
+			//resp.sendRedirect("home");
+			resp.sendRedirect("approve");
 		} else {
 			//if someone sends a get request
 			resp.sendRedirect("login.html");
@@ -53,9 +54,11 @@ public class LoginServlet extends HttpServlet{
 			HttpSession sess = req.getSession(true);
 			sess.setAttribute("employee", employee);
 			sess.setAttribute("employeeid", e.getEmployeeId());
-			resp.sendRedirect("home");
+			//resp.sendRedirect("home");
 			//resp.sendRedirect("register.html");
-			if (e.getEmployeeType().equals("Sales Supervisor")) {
+			if (e.getEmployeeType().contains("associate")) {
+				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"logout\">logout</a>");			
+			} else {
 				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"logout\">logout</a>");			
 			}
 		}
