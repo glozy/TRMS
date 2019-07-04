@@ -29,12 +29,9 @@ public class LoginServlet extends HttpServlet{
 			if (type.contains("associate")) {
 				resp.sendRedirect("rform.html");
 			} else {
-			//user is logged in already
-			//resp.sendRedirect("home");
 			resp.sendRedirect("formfind.html");
 			}
 		} else {
-			//if someone sends a get request
 			resp.sendRedirect("login.html");
 		}	
 
@@ -47,9 +44,7 @@ public class LoginServlet extends HttpServlet{
 		String password = req.getParameter("password");
 		Employee employee = employeeService.loginEmployee(username, password);
 
-		//EmployeeDao ed = new EmployeeDaoImpl();
-		//Employee e = ed.getUserByName(username);
-		Employee e = employeeService.getAllUsers(username);
+		Employee e = employeeService.getAllEmployees(username);
 		
 		if (employee == null) {
 			resp.setStatus(401);
@@ -63,13 +58,13 @@ public class LoginServlet extends HttpServlet{
 			//resp.sendRedirect("home");
 			//resp.sendRedirect("register.html");
 			if (e.getEmployeeType().contains("BENCO")) {
-				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"logout\">logout</a>");			
+				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"finalbencoform.html\">view final approval forms</a><br><a href=\"logout\">logout</a>");			
 			} else if (e.getEmployeeType().contains("HOD")) {
 				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"logout\">logout</a>");			
 			} else if (e.getEmployeeType().contains("supervisor")) {
 				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"logout\">logout</a>");			
 			} else {
-				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"rform.html\">view forms</a><br><a href=\"logout\">logout</a>");			
+				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"rform.html\">view forms</a><br><a href=\"formupdate.html\">Update Forms<br><a href=\"logout\">logout</a>");			
 			}
 		}
 	}

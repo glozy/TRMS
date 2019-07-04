@@ -22,7 +22,7 @@ public class ReimburseForm {
 
 	private String grading_format;
 	
-	private String passing_grade;
+	private String grade;
 
 	private String events;
 
@@ -38,8 +38,8 @@ public class ReimburseForm {
 	}
 
 	public ReimburseForm(Integer formId, Integer employeeID, Date startDate, Date endDate, String form_time, String address,
-			String description, Double course_cost, String grading_format, String passing_grade, String events,
-			String justification, String event_attachment) {
+			String description, Double course_cost, String status, String grading_format, String events, 
+			String justification, String grade) {
 		super();
 		this.formId = formId;
 		this.employeeID = employeeID;
@@ -50,14 +50,14 @@ public class ReimburseForm {
 		this.description = description;
 		this.course_cost = course_cost;
 		this.grading_format = grading_format;
-		this.passing_grade = passing_grade;
+		this.grade = grade;
 		this.events = events;
 		this.justification = justification;
-		this.event_attachment = event_attachment;
+		this.status = status;
 	}
 
 	public ReimburseForm(Integer employeeID, Date startDate, Date endDate, String events, String address,
-			String description, Double course_cost, String grading_format, String passing_grade, String justification) {
+			String description, Double course_cost, String grading_format, String grade, String justification) {
 		super();
 		this.employeeID = employeeID;
 		this.startDate = startDate;
@@ -66,7 +66,7 @@ public class ReimburseForm {
 		this.description = description;
 		this.course_cost = course_cost;
 		this.grading_format = grading_format;
-		this.passing_grade = passing_grade;
+		this.grade = grade;
 		this.events = events;
 		this.justification = justification;
 	}
@@ -88,8 +88,6 @@ public class ReimburseForm {
 		this.status = status;
 		this.form_time = form_time;
 	}
-
-	
 
 	public Date getEndDate() {
 		return endDate;
@@ -175,12 +173,12 @@ public class ReimburseForm {
 		this.grading_format = grading_format;
 	}
 
-	public String getPassing_grade() {
-		return passing_grade;
+	public String getGrade() {
+		return grade;
 	}
 
-	public void setPassing_grade(String passing_grade) {
-		this.passing_grade = passing_grade;
+	public void setGrade(String passing_grade) {
+		this.grade = passing_grade;
 	}
 
 	public String getEvents() {
@@ -222,7 +220,7 @@ public class ReimburseForm {
 		result = prime * result + ((form_time == null) ? 0 : form_time.hashCode());
 		result = prime * result + ((grading_format == null) ? 0 : grading_format.hashCode());
 		result = prime * result + ((justification == null) ? 0 : justification.hashCode());
-		result = prime * result + ((passing_grade == null) ? 0 : passing_grade.hashCode());
+		result = prime * result + ((grade == null) ? 0 : grade.hashCode());
 		result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
@@ -292,10 +290,10 @@ public class ReimburseForm {
 				return false;
 		} else if (!justification.equals(other.justification))
 			return false;
-		if (passing_grade == null) {
-			if (other.passing_grade != null)
+		if (grade == null) {
+			if (other.grade != null)
 				return false;
-		} else if (!passing_grade.equals(other.passing_grade))
+		} else if (!grade.equals(other.grade))
 			return false;
 		if (startDate == null) {
 			if (other.startDate != null)
@@ -315,7 +313,7 @@ public class ReimburseForm {
 		return "ReimburseForm [formId=" + formId + ", employeeID=" + employeeID + ", startDate=" + startDate
 				+ ", endDate=" + endDate + ", form_time=" + form_time + ", address=" + address + ", description="
 				+ description + ", course_cost=" + course_cost + ", grading_format=" + grading_format
-				+ ", passing_grade=" + passing_grade + ", events=" + events + ", justification=" + justification
+				+ ", grade=" + grade + ", events=" + events + ", justification=" + justification
 				+ ", event_attachment=" + event_attachment + ", status=" + status + "]";
 	}
 	

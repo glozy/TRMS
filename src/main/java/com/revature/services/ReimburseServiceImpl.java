@@ -15,23 +15,23 @@ public class ReimburseServiceImpl implements ReimburseService {
 	}
 
 	@Override
-	public List<ReimburseForm> viewFormBySupervisorId(Integer id) {
-		return rdi.viewFormBySupervisorId(id);
+	public List<ReimburseForm> viewFormBySupervisorId(Integer employeeid) {
+		return rdi.viewFormBySupervisorId(employeeid);
 	}
 	
 	@Override
-	public List<ReimburseForm> viewFormByBenco(Integer id) {
-		return rdi.viewFormByBenco(id);
+	public List<ReimburseForm> viewFormByBenco(Integer employeeid) {
+		return rdi.viewFormByBenco(employeeid);
 	}
 
 	@Override
-	public List<ReimburseForm> viewFormByHod(Integer id) {
-		return rdi.viewFormByHod(id);
+	public List<ReimburseForm> viewFormByHod(Integer employeeid) {
+		return rdi.viewFormByHod(employeeid);
 	}
 
 	@Override
-	public ReimburseForm getFormById(Integer reimburseid) {
-		return rdi.getFormById(reimburseid);
+	public ReimburseForm getFormById(Integer formid) {
+		return rdi.getFormById(formid);
 	}
 
 	@Override
@@ -64,6 +64,29 @@ public class ReimburseServiceImpl implements ReimburseService {
 		rdi.bencoDenyForm(formid);
 	}
 
-	
+	@Override
+	public List<ReimburseForm> viewFormByEmployeeId(Integer employeeid) {
+		return rdi.viewFormByEmployeeId(employeeid);
+	}
+
+	@Override
+	public List<ReimburseForm> viewFinalFormByBenco(Integer employeeid) {
+		return rdi.viewFinalFormByBenco(employeeid);
+	}
+
+	@Override
+	public void updateGrade(Integer formid, String grade) {
+		rdi.updateGrade(formid, grade);
+	}
+
+	@Override
+	public void bencoFinalApproveForm(Integer formid) {
+		rdi.bencoFinalApproveForm(formid);
+	}
+
+	@Override
+	public void bencoFinalDenyForm(Integer formid) {
+		rdi.bencoFinalDenyForm(formid);
+	}
 
 }

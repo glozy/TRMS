@@ -35,16 +35,16 @@ public class ApproveServlet extends HttpServlet {
 		
 		if (name == null || name.substring(1) == "") {
 			List<ReimburseForm> formList = null;
-			Integer userid = (Integer) sess.getAttribute("employeeid");
+			Integer employeeid = (Integer) sess.getAttribute("employeeid");
 			switch(type) {
 			case "BENCO" :
-				formList = rs.viewFormByBenco(userid);
+				formList = rs.viewFormByBenco(employeeid);
 				break;
 			case "HOD" :
-				formList = rs.viewFormByHod(userid);
+				formList = rs.viewFormByHod(employeeid);
 				break;
 			case "supervisor" :
-				formList = rs.viewFormBySupervisorId(userid);
+				formList = rs.viewFormBySupervisorId(employeeid);
 				break;
 			}
 
@@ -57,7 +57,6 @@ public class ApproveServlet extends HttpServlet {
 			return;
 		}
 		
-		System.out.println(name.substring(1));
 		Integer id = Integer.parseInt(name.substring(1));
 		ReimburseForm a = rs.getFormById(id);
 
@@ -123,52 +122,6 @@ public class ApproveServlet extends HttpServlet {
 			}
 		}
 		
-//		if (status.equals(ap)) {
-//			rs.supervisorApproveForm(fid);
-//			response.getWriter().write("Form approved");
-//			LoggingUtil.info("Form approved");
-//		} else {
-//			rs.supervisorDenyForm(fid);
-//			response.getWriter().write("Form denied");
-//			LoggingUtil.info("Form denied");
-//		}
-	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-//		String name = request.getPathInfo();
-//		System.out.println(name.substring(1));
-	//	Integer id = Integer.parseInt(name.substring(1));
-		//ReimburseForm a = rd.getFormById(id);
-		
-		//updateForm(a);
-		
-		
-		
-//		String body = request.getReader().readLine();
-//		System.out.println(body);
-	//	ObjectMapper om = new ObjectMapper();
-	//	Animal a = om.readValue(body, Animal.class);
-	//	a.setOwner((User)sess.getAttribute("user"));
-	//	as.createAnimal(a);
-	//	response.getWriter().write("Animal successfuly created");
 	}
 
 

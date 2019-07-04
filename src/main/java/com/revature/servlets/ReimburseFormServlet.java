@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.revature.pojo.ReimburseForm;
+import com.revature.services.EmployeeServiceImpl;
 import com.revature.services.ReimburseServiceImpl;
 
 public class ReimburseFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private ReimburseServiceImpl rsi = new ReimburseServiceImpl();
-	
+	private EmployeeServiceImpl esi = new EmployeeServiceImpl();
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession sess = req.getSession(false);
@@ -45,6 +46,12 @@ public class ReimburseFormServlet extends HttpServlet {
 			req.getRequestDispatcher("login").forward(req, resp);
 			return;
 		}
+		
+		Double pending	= esi.calculatePending(cost, events);
+		Integer employeeid = (Integer) sess.getAttribute("employeeid");
+		esi.setPending(pending, employeeid);
+		esi.setAvailable(pending, employeeid);
+		
 		ReimburseForm reimburseForm = new ReimburseForm((Integer)sess.getAttribute("employeeid"), startdate, enddate, events, address, description, cost, gradeFormat, grade, justification);
 		rsi.createReimburseForm(reimburseForm);
 

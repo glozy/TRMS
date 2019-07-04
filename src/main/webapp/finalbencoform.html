@@ -17,10 +17,9 @@
 		<button id="get-form">Choose Form</button>
 	</div>
 	<div>
-		<form action="approve" method="post">
-         					
+		<form action="finalapprove" method="post">
+                    <!-- the name must match the getParameter in servlet -->					
             <input type = "text" name="formid" placeholder="enter form id choice"/>
-            <!--  <input type = "text" name="status" placeholder = "supervisor status decision"> -->
             <label>Decision</label> 
             <select name="status">
 				<option value="approve">Approve</option>
@@ -28,6 +27,6 @@
 			</select> <input type="submit" value="Update Status"/>
             </form>
 	</div>
-	<script type="text/javascript" src="formfind.js"></script>
+	<script type="text/javascript" src="finalbencoform.js"></script>
 </body>
 </html>

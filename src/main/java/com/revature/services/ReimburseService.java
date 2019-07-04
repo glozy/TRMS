@@ -8,13 +8,17 @@ public interface ReimburseService {
 	
 	public void createReimburseForm(ReimburseForm r);
 	
-	public List<ReimburseForm> viewFormBySupervisorId(Integer id);
+	public List<ReimburseForm> viewFormBySupervisorId(Integer employeeid);
 	
-	public List<ReimburseForm> viewFormByBenco(Integer id);
+	public List<ReimburseForm> viewFormByBenco(Integer employeeid);
 	
-	public List<ReimburseForm> viewFormByHod(Integer id);
+	public List<ReimburseForm> viewFormByHod(Integer employeeid);
 	
-	public ReimburseForm getFormById(Integer reimburseid);
+	public List<ReimburseForm> viewFormByEmployeeId(Integer employeeid);
+	
+	public List<ReimburseForm> viewFinalFormByBenco(Integer employeeid);
+	
+	public ReimburseForm getFormById(Integer formid);
 	
 	public void supervisorApproveForm(Integer formid);
 	
@@ -28,4 +32,10 @@ public interface ReimburseService {
 	
 	public void bencoDenyForm(Integer formid);
 
+	public void updateGrade(Integer formid, String grade);
+	
+	public void bencoFinalApproveForm(Integer formid);
+	
+	public void bencoFinalDenyForm(Integer formid);
+	
 }

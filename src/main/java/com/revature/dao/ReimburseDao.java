@@ -8,7 +8,7 @@ public interface ReimburseDao {
 	
 	public void insertForm(ReimburseForm r);
 	
-	public ReimburseForm getFormById(Integer reimburseid);
+	public ReimburseForm getFormById(Integer formid);
 	
 	public List<ReimburseForm> viewFormBySupervisorId(Integer id);
 	
@@ -28,4 +28,13 @@ public interface ReimburseDao {
 	
 	public void bencoDenyForm (Integer formid);
 	
+	public List<ReimburseForm> viewFormByEmployeeId(Integer id);
+	
+	public void updateGrade(Integer formid, String grade);
+	
+	public List<ReimburseForm> viewFinalFormByBenco(Integer id);
+	
+	public void bencoFinalApproveForm (Integer formid);
+	
+	public void bencoFinalDenyForm (Integer formid);
 }

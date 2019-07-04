@@ -15,7 +15,7 @@ import com.revature.services.EmployeeServiceImpl;
 public class RegisterServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
-	private EmployeeService userService = new EmployeeServiceImpl();
+	private EmployeeService es = new EmployeeServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServerException, IOException {
@@ -36,7 +36,7 @@ public class RegisterServlet extends HttpServlet{
 			resp.getWriter().write("Successful registration");
 			//req.getRequestDispatcher("home").forward(req, resp);
 		}
-		Employee user = userService.createUser(username, password);
+		es.createEmployee(username, password);
 
 //		if (user == null) {
 //			resp.setStatus(401);

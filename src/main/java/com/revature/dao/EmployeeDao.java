@@ -6,21 +6,26 @@ import com.revature.pojo.Employee;
 
 public interface EmployeeDao {
 	
-	public void createEmployee(Employee u);
+	public void createEmployee(Employee em);
 	
-	public Employee getUserByName(String username);
-	
-	//public void updateCustomer(User u);
-	
-	//public void deleteCustomer(User u);
-	
-	//public User getCustomerById(Integer id);
-	
-	//public User getCustomerByUsername(String username);
+	public Employee getEmployeeByName(String username);
 	
 	public ArrayList<Employee> getAllEmployees();
 	
-	//public ArrayList<Car> viewCars(String userName);
-
-	//void preparedUpdateCustomer(Customer c);
+	public void setPending(Double pending, Integer employeeid);
+	
+	public void setAvailable(Double available, Integer employeeid);
+	
+	public Double getAvailable(Integer employeeid);
+	
+	public Double getPending(Integer employeeid);
+	
+	public Double getAward(Integer employeeid);
+	
+	public Employee getEmployeebyformId(Integer formid);
+	
+	public void setAward(Integer employeeid, Double award);
+	
+	public void setFinalPending(Double pending, Integer employeeid);
+	
 }

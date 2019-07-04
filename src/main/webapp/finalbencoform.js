@@ -14,7 +14,7 @@ function getForms() {
 		}
 	}
 	
-	xhr.open("GET", "/TRMS/approve", true);
+	xhr.open("GET", "/TRMS/finalapprove", true);
 	
 	xhr.send();
 	
@@ -34,16 +34,16 @@ function getFormById() {
 		}
 	}
 	
-	xhr.open("GET", "/TRMS/approve/" + formName, true);
+	xhr.open("GET", "/TRMS/finalapprove/" + formName, true);
 	
 	xhr.send();
 }
 
 function displayForm (form) {
-	let formString = "ReimburseId: " + form.reimbursementId + "<br>" +
+	let formString = "FormId: " + form.formId + "<br>" +
 		"EmployeeId: " + form.employeeID + "<br>" +
-		"Start Date: " + form.startdate + "<br>" +
-        "End Date: " + form.enddate + "<br>" +
+		"Start Date: " + form.startDate + "<br>" +
+        "End Date: " + form.endDate + "<br>" +
         "Address Location: " + form.address + "<br>" +
 		"Events: " + form.events + "<br>" +
 		"Description: " + form.description+"<br>" +
@@ -51,20 +51,21 @@ function displayForm (form) {
         "Status: " + form.status + "<br>" +
 		"Course Cost: " + form.course_cost + "<br>" +
         "Grading Format: " + form.grading_format + "<br>" +
-        "form time" + form.form_time
+        "form time" + form.form_time + "<br>" +
+        "Grade: " + form.grade
 
 	document.getElementById("my-form").innerHTML = formString;
 }
 
 
 
-let Form = function(reimbursementId, employeeID, 
-    startdate, enddate, form_time, address, description,
-    course_cost, status, grading_format, events, work_justify  ) {
-            this.reimbursementId = reimbursementId;
+let Form = function(formId, employeeID, 
+		startDate, endDate, address, events, description,
+    work_justify, status, course_cost, grading_format, form_time,grade) {
+            this.formId = formId;
             this.employeeID = employeeID;
-            this.startdate = startdate;
-            this.enddate = enddate;
+            this.startDate = startDate;
+            this.endDate = endDate;
             this.form_time = form_time;
             this.address_location = address;
             this.description = description;
@@ -73,6 +74,7 @@ let Form = function(reimbursementId, employeeID,
             this.grading_format = grading_format;
             this.events = events;
             this.work_justify = work_justify;
+            this.grade = grade;
 
     }
 
