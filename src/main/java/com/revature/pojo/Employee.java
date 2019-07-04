@@ -16,11 +16,11 @@ public class Employee {
 	
 	private String phone;
 	
-	private Integer reportsto;
-	
 	private String EmployeeType;
 	
 	private Double award;
+	
+	private Double pending;
 	
 	public String getEmployeeType() {
 		return EmployeeType;
@@ -31,7 +31,7 @@ public class Employee {
 	}
 	
 	public Employee(Integer employeeId, String firstname, String lastname, String username, String password,
-			String email, String phone, Integer reportsto, String employeeType, Double award) {
+			String email, String phone, String employeeType, Double award) {
 		super();
 		this.employeeId = employeeId;
 		this.firstname = firstname;
@@ -40,8 +40,7 @@ public class Employee {
 		this.password = password;
 		this.email = email;
 		this.phone = phone;
-		this.reportsto = reportsto;
-		EmployeeType = employeeType;
+		this.EmployeeType = employeeType;
 		this.award = award;
 	}
 
@@ -117,14 +116,6 @@ public class Employee {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-
-	public Integer getReportsto() {
-		return reportsto;
-	}
-
-	public void setReportsto(Integer reportsto) {
-		this.reportsto = reportsto;
 	}
 
 	public Double getAward() {
