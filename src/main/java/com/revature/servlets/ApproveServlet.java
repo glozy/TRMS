@@ -46,12 +46,16 @@ public class ApproveServlet extends HttpServlet {
 			case "supervisor" :
 				formList = rs.viewFormBySupervisorId(employeeid);
 				break;
+			
+			case "associate" :
+			formList = rs.viewFormBySupervisorId(employeeid);
+			break;
 			}
 
 			String result = "";
 
 			for (ReimburseForm r : formList) {
-				result +="form number: " + r.getFormId() + " ";
+				result +="<i><b>form number:</i></b> " + r.getFormId() + " " + "<br>";
 			}
 			response.getWriter().append(result);
 			return;
@@ -88,17 +92,21 @@ public class ApproveServlet extends HttpServlet {
 			switch(type) {
 			case "BENCO" :
 				rs.bencoApproveForm(fid);
-				response.getWriter().write("Form approved");
+				response.sendRedirect("benco.html");
+				//response.getWriter().write("Animal successfuly created");
+				//response.getWriter().write("Form approved");
 				LoggingUtil.info("BENCO approved form");
 				break;
 			case "HOD" :
 				rs.hodApproveForm(fid);
-				response.getWriter().write("Form approved");
+				response.sendRedirect("hod.html");
+				//response.getWriter().write("Form approved");
 				LoggingUtil.info("HOD approved form");
 				break;
 			case "supervisor" :
 				rs.supervisorApproveForm(fid);
-				response.getWriter().write("Form approved");
+				response.sendRedirect("supervisor.html");
+				//response.getWriter().write("Form approved");
 				LoggingUtil.info("supervisor approved form");
 				break;
 			}
@@ -106,17 +114,20 @@ public class ApproveServlet extends HttpServlet {
 			switch(type) {
 			case "BENCO" :
 				rs.bencoDenyForm(fid);
-				response.getWriter().write("Form denied");
+				response.sendRedirect("benco.html");
+				//response.getWriter().write("Form denied");
 				LoggingUtil.info("BENCO denied form");
 				break;
 			case "HOD" :
 				rs.hodDenyForm(fid);
-				response.getWriter().write("Form denied");
+				response.sendRedirect("hod.html");
+				//response.getWriter().write("Form denied");
 				LoggingUtil.info("HOD denied form");
 				break;
 			case "supervisor" :
 				rs.supervisorDenyForm(fid);
-				response.getWriter().write("Form denied");
+				response.sendRedirect("supervisor.html");
+				//response.getWriter().write("Form denied");
 				LoggingUtil.info("supervisor denied form");
 				break;
 			}

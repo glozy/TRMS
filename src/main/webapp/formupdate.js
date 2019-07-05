@@ -38,18 +38,17 @@ function getFormById() {
 }
 
 function displayForm (form) {
-	let formString = "FormId: " + form.formId + "<br>" +
-		"EmployeeId: " + form.employeeID + "<br>" +
-		"Start Date: " + form.startdate + "<br>" +
-        "End Date: " + form.enddate + "<br>" +
-        "Address Location: " + form.address + "<br>" +
-		"Events: " + form.events + "<br>" +
-		"Description: " + form.description+"<br>" +
-        "Work Justify: " + form.work_justify + "<br>" +
-        "Status: " + form.status + "<br>" +
-		"Course Cost: " + form.course_cost + "<br>" +
-        "Grading Format: " + form.grading_format + "<br>" +
-        "form time" + form.form_time 
+	let formString = "<b><i>FormId:</i></b> " + form.formId + "<br>" +
+	"<b><i>EmployeeId:</i></b> " + form.employeeID + "<br>" +
+	"<b><i>Start Date:</i></b> " + form.startDate + "<br>" +
+    "<b><i>End Date:</i></b> " + form.endDate + "<br>" +
+    "<b><i>Address Location:</i></b> " + form.address + "<br>" +
+	"<b><i>Events:</i></b> " + form.events + "<br>" +
+	"<b><i>Description:</i></b> " + form.description+"<br>" +
+    "<b><i>Status:</i></b> " + form.status + "<br>" +
+	"<b><i>Course Cost:</i></b> " + form.course_cost + "<br>" +
+    "<b><i>Grading Format:</i></b> " + form.grading_format + "<br>" +
+    "<b><i>form time:</i></b> " + form.form_time
 
 	document.getElementById("my-form").innerHTML = formString;
 }
@@ -57,12 +56,12 @@ function displayForm (form) {
 
 
 let Form = function(formId, employeeID, 
-    startdate, enddate, form_time, address, description,
-    course_cost, status, grading_format, events, work_justify  ) {
+		startDate, endDate, address, events, description,
+    work_justify, status, course_cost, grading_format, form_time,grade) {
             this.formId = formId;
             this.employeeID = employeeID;
-            this.startdate = startdate;
-            this.enddate = enddate;
+            this.startDate = startDate;
+            this.endDate = endDate;
             this.form_time = form_time;
             this.address_location = address;
             this.description = description;
@@ -71,6 +70,7 @@ let Form = function(formId, employeeID,
             this.grading_format = grading_format;
             this.events = events;
             this.work_justify = work_justify;
+            this.grade = grade;
 
     }
 
@@ -78,6 +78,5 @@ let Form = function(formId, employeeID,
 window.onload = function () {
 	
 	getForms();
-	// document.getElementById("get-form").addEventListener("click", getFormById);
-	// document.getElementById("updatestatus").addEventListener("click", postAnimal);
+	document.getElementById("get-form").addEventListener("click", getFormById);
 }

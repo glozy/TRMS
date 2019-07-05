@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tuition Reimbursement Management System</title>
+<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="form.css">
+
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse navbar-expand-xl navbar-dark">
+		<div class="navbar-header d-flex col">
+			<a class="navbar-brand" href="associate.html"><i class="fa fa-cube"></i><b>TRMS</b></a>
+			<button type="button" data-target="#navbarCollapse"
+				data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">
+				<span class="navbar-toggler-icon"></span> <span class="icon-bar"></span>
+				<span class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+		</div>
+		<!-- Collection of nav links, forms, and other content for toggling -->
+		<div id="navbarCollapse"
+			class="collapse navbar-collapse justify-content-start">
+			<form class="navbar-form form-inline">
+				<div class="input-group search-box">
+					<input type="text" id="search" class="form-control"
+						placeholder="Search here..."> <span
+						class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
+				</div>
+			</form>
+			<ul class="nav navbar-nav navbar-right ml-auto">
+				<li class="nav-item active"><a href="associate.html" class="nav-link"><i
+						class="fa fa-home"></i><span>Home</span></a></li>
+				<li class="nav-item"><a href="#" class="nav-link"><i
+						class="fa fa-gears"></i><span>Projects</span></a></li>
+				<li class="nav-item"><a href="#" class="nav-link"><i
+						class="fa fa-users"></i><span>Team</span></a></li>
+				<li class="nav-item"><a href="#" class="nav-link"><i
+						class="fa fa-pie-chart"></i><span>Reports</span></a></li>
+				<li class="nav-item"><a href="#" class="nav-link"><i
+						class="fa fa-briefcase"></i><span>Careers</span></a></li>
+				<li class="nav-item"><a href="#" class="nav-link"><i
+						class="fa fa-envelope"></i><span>Messages</span></a></li>
+				<li class="nav-item"><a href="updateassociate.html" class="nav-link"><i
+						class="fa fa-bell"></i><span>Update Grade</span></a></li>
+				<li class="nav-item dropdown"><a href="#"
+					data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img
+						src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg"
+						class="avatar" alt="Avatar"> Associate <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="#" class="dropdown-item"><i
+								class="fa fa-user-o"></i> Profile</a></li>
+						<li><a href="#" class="dropdown-item"><i
+								class="fa fa-calendar-o"></i> Calendar</a></li>
+						<li><a href="#" class="dropdown-item"><i
+								class="fa fa-sliders"></i> Settings</a></li>
+						<li class="divider dropdown-divider"></li>
+						<li><a href="logout" class="dropdown-item"><i
+								class="material-icons">&#xE8AC;</i> Logout</a></li>
+					</ul></li>
+			</ul>
+		</div>
+	</nav>
+
+	<form action="rform" method="post">
+		<div class="form-row">
+
+			<div class="col-md-3 mb-3">
+				<label for="validationDefault05"><b>Start Date</b></label> <input
+					type="date" class="form-control" id="date" name="startdate"
+					placeholder="Start Date" required>
+			</div>
+
+			<div class="col-md-3 mb-3">
+				<label for="validationDefault05"><b>End Date</b></label> <input
+					type="date" class="form-control" id="date" name="enddate"
+					placeholder="End Date" required>
+			</div>
+
+
+
+			<div class="form-group col-md-4">
+				<label for="inputEvents"><b>Events</b></label> <select id="events"
+					name="events" class="form-control">
+					<option selected>Choose...</option>
+					<option value="university-courses">University Courses</option>
+					<option value="certification-prep-classes">Certification
+						Preparation Classes</option>
+					<option value="certification">Certification</option>
+					<option value="technical-training">Technical Training</option>
+					<option value="seminars">Seminars</option>
+					<option value="others">Others</option>
+				</select>
+			</div>
+
+		</div>
+
+		<div class="form-row">
+
+			<div class="col-md-3 mb-3">
+				<label for="validationDefault03"><b>Location</b></label> <input
+					type="text" class="form-control" name="address" id="address"
+					placeholder="address" required>
+			</div>
+
+			<div class="col-md-3 mb-3">
+				<label for="validationDefault03"><b>Cost</b></label> <input
+					type="number" class="form-control" name="cost" id="cost"
+					placeholder="cost" required>
+			</div>
+			<br> <br> <br>
+			<div class="form-group col-md-4">
+				<label for="inputEvents"><b>Grade Format</b></label> <select
+					id="events" name="grade-format" class="form-control">
+					<option selected>Choose...</option>
+					<option value="presentation">Presentation</option>
+					<option value="pass/fail">Pass/Fail</option>
+
+				</select>
+
+			</div>
+
+			<div class="form-group col-md-4">
+				<label for="exampleFormControlTextarea1"><b>Description</b></label>
+				<textarea class="form-control" id="exampleFormControlTextarea1"
+					rows="3"></textarea>
+			</div>
+
+
+
+
+
+
+			<br> <br> <br> <br> <br> <br>
+		</div>
+
+		<div class="custom-file">
+			<input type="file" class="custom-file-input" id="customFile">
+			<label class="custom-file-label" for="customFile"></label>
+		</div>
+
+		<br> <br> <br>
+		<div>
+
+			<button class="btn btn-primary" type="submit">Submit form</button>
+		</div>
+	</form>
+
+	<script type="text/javascript" src="formfind.js"></script>
+
+</body>
+
+</html>

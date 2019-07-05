@@ -17,6 +17,7 @@ import com.revature.services.EmployeeService;
 import com.revature.services.EmployeeServiceImpl;
 import com.revature.services.ReimburseService;
 import com.revature.services.ReimburseServiceImpl;
+import com.revature.util.LoggingUtil;
 
 public class FinalApproveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -42,7 +43,7 @@ public class FinalApproveServlet extends HttpServlet {
 			String result = "";
 
 			for (ReimburseForm r : viewList) {
-				result +="form number: " + r.getFormId() + " ";
+				result +="<i><b>form number:</i></b> " + r.getFormId() + " " + "<br>";
 			}
 			
 			response.getWriter().append(result);
@@ -80,10 +81,13 @@ public class FinalApproveServlet extends HttpServlet {
 		if (status.equals(approve)) {
 			es.setAward(fid);
 			rs.bencoFinalApproveForm(fid);
-			response.getWriter().write("Form approved");
+			response.sendRedirect("benco.html");
+			LoggingUtil.info("BENCO approved form");
 
 		} else {
-			System.out.println("hello");
+			rs.bencoFinalDenyForm(fid);
+			response.sendRedirect("benco.html");
+			LoggingUtil.info("BENCO denied form");
 		}
 
 	}

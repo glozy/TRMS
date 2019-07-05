@@ -27,9 +27,11 @@ public class LoginServlet extends HttpServlet{
 		if (sess != null && sess.getAttribute("employee") != null) {
 			String type = (String) sess.getAttribute("employeetype");
 			if (type.contains("associate")) {
-				resp.sendRedirect("rform.html");
+				resp.sendRedirect("associate.html");
+				//resp.sendRedirect("rform.html");
 			} else {
-			resp.sendRedirect("formfind.html");
+			//resp.sendRedirect("formfind.html");
+				resp.sendRedirect("supervisor.html");
 			}
 		} else {
 			resp.sendRedirect("login.html");
@@ -50,21 +52,22 @@ public class LoginServlet extends HttpServlet{
 			resp.setStatus(401);
 			resp.getWriter().write("Failed login");
 		} else {
-			//using session
 			HttpSession sess = req.getSession(true);
 			sess.setAttribute("employee", employee);
 			sess.setAttribute("employeeid", e.getEmployeeId());
 			sess.setAttribute("employeetype", e.getEmployeeType());
-			//resp.sendRedirect("home");
-			//resp.sendRedirect("register.html");
 			if (e.getEmployeeType().contains("BENCO")) {
-				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"finalbencoform.html\">view final approval forms</a><br><a href=\"logout\">logout</a>");			
+				resp.sendRedirect("benco.html");
+				//resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"finalbencoform.html\">view final approval forms</a><br><a href=\"logout\">logout</a>");			
 			} else if (e.getEmployeeType().contains("HOD")) {
-				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"logout\">logout</a>");			
+				resp.sendRedirect("hod.html");
+				//resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"logout\">logout</a>");			
 			} else if (e.getEmployeeType().contains("supervisor")) {
-				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"logout\">logout</a>");			
+				resp.sendRedirect("supervisor.html");
+				//resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"formfind.html\">view forms</a><br><a href=\"logout\">logout</a>");			
 			} else {
-				resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"rform.html\">view forms</a><br><a href=\"formupdate.html\">Update Forms<br><a href=\"logout\">logout</a>");			
+				resp.sendRedirect("associate.html");
+				//resp.getWriter().write("<h1>Welcome " +  e.getEmployeeType() + " </h1><br><a href=\"rform.html\">view forms</a><br><a href=\"formupdate.html\">Update Forms<br><a href=\"logout\">logout</a>");			
 			}
 		}
 	}

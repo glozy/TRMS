@@ -25,7 +25,7 @@ public class ReimburseFormServlet extends HttpServlet {
 			req.getRequestDispatcher("login").forward(req, resp);
 			return;
 		} else {//resp.sendRedirect("reimbursement-form.html");
-		resp.sendRedirect("rform.html");
+		resp.sendRedirect("associate.html");
 		}
 	}
 
@@ -54,6 +54,7 @@ public class ReimburseFormServlet extends HttpServlet {
 		
 		ReimburseForm reimburseForm = new ReimburseForm((Integer)sess.getAttribute("employeeid"), startdate, enddate, events, address, description, cost, gradeFormat, grade, justification);
 		rsi.createReimburseForm(reimburseForm);
+		resp.sendRedirect("associate.html");
 
 	}
 

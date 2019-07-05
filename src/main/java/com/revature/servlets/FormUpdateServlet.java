@@ -1,6 +1,8 @@
 package com.revature.servlets;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.pojo.ReimburseForm;
 import com.revature.services.ReimburseService;
 import com.revature.services.ReimburseServiceImpl;
@@ -36,12 +39,23 @@ public class FormUpdateServlet extends HttpServlet {
 			String result = "";
 
 			for (ReimburseForm r : formList) {
-				result +="form number: " + r.getFormId() + " ";
+				result +="<i><b>form number:</i></b> " + r.getFormId() + " " + "<br>";
 			}
 			//response.getWriter().write("<h1>" + result + "</h1>");
 			response.getWriter().append(result);
 			return;
 		}
+		Integer id = Integer.parseInt(name.substring(1));
+		ReimburseForm a = rs.getFormById(id);
+
+		ObjectMapper om = new ObjectMapper();
+		
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		om.setDateFormat(df);
+
+		String formString = om.writeValueAsString(a);
+
+		response.getWriter().write(formString);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -57,6 +71,7 @@ public class FormUpdateServlet extends HttpServlet {
 		Integer fid =Integer.parseInt(formid);
 	
 		rs.updateGrade(fid, grade);
+		response.sendRedirect("associate.html");
 	}
 
 }

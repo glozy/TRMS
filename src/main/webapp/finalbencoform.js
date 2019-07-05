@@ -40,19 +40,18 @@ function getFormById() {
 }
 
 function displayForm (form) {
-	let formString = "FormId: " + form.formId + "<br>" +
-		"EmployeeId: " + form.employeeID + "<br>" +
-		"Start Date: " + form.startDate + "<br>" +
-        "End Date: " + form.endDate + "<br>" +
-        "Address Location: " + form.address + "<br>" +
-		"Events: " + form.events + "<br>" +
-		"Description: " + form.description+"<br>" +
-        "Work Justify: " + form.work_justify + "<br>" +
-        "Status: " + form.status + "<br>" +
-		"Course Cost: " + form.course_cost + "<br>" +
-        "Grading Format: " + form.grading_format + "<br>" +
-        "form time" + form.form_time + "<br>" +
-        "Grade: " + form.grade
+	let formString = "<b><i>FormId:</i></b> " + form.formId + "<br>" +
+	"<b><i>EmployeeId:</i></b> " + form.employeeID + "<br>" +
+	"<b><i>Start Date:</i></b> " + form.startDate + "<br>" +
+    "<b><i>End Date:</i></b> " + form.endDate + "<br>" +
+    "<b><i>Address Location:</i></b> " + form.address + "<br>" +
+	"<b><i>Events:</i></b> " + form.events + "<br>" +
+	"<b><i>Description:</i></b> " + form.description+"<br>" +
+    "<b><i>Status:</i></b> " + form.status + "<br>" +
+	"<b><i>Course Cost:</i></b> " + form.course_cost + "<br>" +
+    "<b><i>Grading Format:</i></b> " + form.grading_format + "<br>" +
+    "<b><i>form time:</i></b> " + form.form_time
+        "<b><i>Grade:</i></b> " + form.grade
 
 	document.getElementById("my-form").innerHTML = formString;
 }
@@ -83,5 +82,5 @@ window.onload = function () {
 	
 	getForms();
 	 document.getElementById("get-form").addEventListener("click", getFormById);
-	// document.getElementById("updatestatus").addEventListener("click", postAnimal);
+	
 }
