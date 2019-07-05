@@ -50,7 +50,7 @@ function displayForm (form) {
     "<b><i>Status:</i></b> " + form.status + "<br>" +
 	"<b><i>Course Cost:</i></b> " + form.course_cost + "<br>" +
     "<b><i>Grading Format:</i></b> " + form.grading_format + "<br>" +
-    "<b><i>form time:</i></b> " + form.form_time
+    "<b><i>form time:</i></b> " + form.form_time + "<br>" +
         "<b><i>Grade:</i></b> " + form.grade
 
 	document.getElementById("my-form").innerHTML = formString;

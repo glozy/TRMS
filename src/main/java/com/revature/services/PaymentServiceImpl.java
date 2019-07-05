@@ -1,10 +1,12 @@
 package com.revature.services;
 
+import com.revature.dao.EmployeeDaoImpl;
 import com.revature.dao.PaymentDaoImpl;
 
 public class PaymentServiceImpl implements PaymentService {
 	
 	private PaymentDaoImpl pdi = new PaymentDaoImpl();
+	private EmployeeDaoImpl edi = new EmployeeDaoImpl();
 
 	@Override
 	public Double calculatePending(Double cost, String events) {
@@ -69,10 +71,10 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public void setAward(Integer formid) {
-		Double award = pdi.getEmployeebyformId(formid).getAward();
-		Double pending = pdi.getEmployeebyformId(formid).getPending();
-		Double available = pdi.getEmployeebyformId(formid).getAvailable();
-		Integer employeeid = pdi.getEmployeebyformId(formid).getEmployeeId();
+		Double award = edi.getEmployeebyformId(formid).getAward();
+		Double pending = edi.getEmployeebyformId(formid).getPending();
+		Double available = edi.getEmployeebyformId(formid).getAvailable();
+		Integer employeeid = edi.getEmployeebyformId(formid).getEmployeeId();
 		if (pending >= available) {
 			award += available;
 		} else {

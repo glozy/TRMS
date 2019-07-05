@@ -41,7 +41,6 @@ public class FormUpdateServlet extends HttpServlet {
 			for (ReimburseForm r : formList) {
 				result +="<i><b>form number:</i></b> " + r.getFormId() + " " + "<br>";
 			}
-			//response.getWriter().write("<h1>" + result + "</h1>");
 			response.getWriter().append(result);
 			return;
 		}

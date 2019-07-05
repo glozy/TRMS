@@ -46,7 +46,6 @@ public class ApproveServlet extends HttpServlet {
 			case "supervisor" :
 				formList = rs.viewFormBySupervisorId(employeeid);
 				break;
-			
 			case "associate" :
 			formList = rs.viewFormBySupervisorId(employeeid);
 			break;
@@ -93,7 +92,6 @@ public class ApproveServlet extends HttpServlet {
 			case "BENCO" :
 				rs.bencoApproveForm(fid);
 				response.sendRedirect("benco.html");
-				//response.getWriter().write("Animal successfuly created");
 				//response.getWriter().write("Form approved");
 				LoggingUtil.info("BENCO approved form");
 				break;

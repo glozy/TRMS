@@ -37,7 +37,7 @@ public class RegisterServlet extends HttpServlet{
 			//req.getRequestDispatcher("home").forward(req, resp);
 		}
 		es.createEmployee(username, password);
-
+		resp.sendRedirect("login.html");
 //		if (user == null) {
 //			resp.setStatus(401);
 //			resp.getWriter().write("Failed registration");
