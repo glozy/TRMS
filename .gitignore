@@ -41,6 +41,6 @@ hs_err_pid*
 **/*.iml
 
 #properties
-#**/*.properties
+**/*.properties
 
 #This is how you add to your gitignore file
