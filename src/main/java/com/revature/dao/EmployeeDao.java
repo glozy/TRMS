@@ -27,5 +27,4 @@ public interface EmployeeDao {
 	public void setAward(Integer employeeid, Double award);
 	
 	public void setFinalPending(Double pending, Integer employeeid);
-	
 }
