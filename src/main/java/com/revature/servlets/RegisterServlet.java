@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.revature.pojo.Employee;
 import com.revature.services.EmployeeService;
 import com.revature.services.EmployeeServiceImpl;
 
